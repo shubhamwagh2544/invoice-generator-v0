@@ -1,34 +1,33 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [state, setState] = useState({
+    name: '',
+    receiptId: 0,
+    price1: 0,
+    price2: 0
+  })
+
+  function handler(e) {
+    //console.log(e.target.name, e.target.value)
+    const {name, value} = e.target
+    setState({...state, [name]: value})
+    //setState(previousState => ({...previousState, [name]: value }))
+  }
+
+  function createAndDownloadPdf() {
+    console.log(state)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <input type="text" placeholder='name' name='name' onChange={handler} />
+      <input type="number" placeholder='receipt id' name='receiptId' onChange={handler} />
+      <input type="number" placeholder='price 1' name='price1' onChange={handler} />
+      <input type="number" placeholder='price 2' name='price2' onChange={handler} />
+      <button onClick={createAndDownloadPdf}>Download PDF</button>
+    </div>
   )
 }
 
