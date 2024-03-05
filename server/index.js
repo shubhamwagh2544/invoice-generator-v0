@@ -19,9 +19,13 @@ app.post('/create-pdf', (req, res) => {
     pdf.create(pdfTemplate(data)).toFile('receipt.pdf', (err) => {
         if (err) {
             //console.log('error')
-            res.status(500).send(Promise.reject())
+            res.status(500).json({
+                message: 'Something went wrong!'
+            })
         }
-        res.status(200).send(Promise.resolve())
+        res.status(200).json({
+            message: 'Success!'
+        })
     })
 })
 
@@ -30,5 +34,8 @@ app.get('/fetch-pdf', (req, res) => {
     res.sendFile(`${__dirname}/receipt.pdf`)
 })
 
+app.all('*', (req, res) => {
+    res.status(200).send('This is not the page you are looking for...')
+})
 
 app.listen(port, () => console.log(`Server is running on port ${port}`))
