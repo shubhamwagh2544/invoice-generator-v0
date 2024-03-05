@@ -6,16 +6,14 @@ const pdfTemplate = require('./documents')
 const app = express()
 const port = 3000
 app.use(express.json())
-// app.use(cors({
-//     origin: [
-//         'https://invoice-generator-v0.vercel.app',
-//         'https://invoice-generator-v0-backend.vercel.app',
-//         'http://localhost:5173'
-//     ],
-//     methods: ['GET', 'POST']
-// }))
-
-app.use(cors())
+//app.use(cors())
+app.use(cors({
+    origin: [
+        'https://invoice-generator-v0.vercel.app',
+        'http://localhost:5173'
+    ],
+    methods: ['GET', 'POST']
+}))
 
 // post request
 app.post('/create-pdf', (req, res) => {
