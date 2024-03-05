@@ -12,7 +12,9 @@ app.use(cors({
         'https://invoice-generator-v0-backend.vercel.app',
         'http://localhost:5173'
     ],
-    methods: ['GET', 'POST']
+    methods: ['GET', 'POST'],
+    credentials: true,
+    allowedHeaders: ['Content-Type']
 }))
 
 // post request
