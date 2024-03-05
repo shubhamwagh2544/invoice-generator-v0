@@ -23,7 +23,9 @@ function App() {
 
   async function createAndDownloadPdf(e) {
     //console.log(state)
-    await axios.post(`${BACKEND_URL}/create-pdf`, state)
+    await axios.post(`${BACKEND_URL}/create-pdf`, state, {
+      headers: { 'Access-Control-Allow-Origin': '*' } 
+    })
       .then(() => axios.get(`${BACKEND_URL}/fetch-pdf`, { responseType: 'blob' }))
       .then((res) => {
         const pdfBlob = new Blob([res.data], { type: 'application/pdf' })
