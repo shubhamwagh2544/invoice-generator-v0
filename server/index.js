@@ -9,6 +9,7 @@ app.use(express.json())
 app.use(cors({
     origin: [
         'https://invoice-generator-v0.vercel.app',
+        'https://invoice-generator-v0-backend.vercel.app',
         'http://localhost:5173'
     ],
     methods: ['GET', 'POST']

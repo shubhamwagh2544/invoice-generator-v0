@@ -86,7 +86,7 @@ function App() {
         <input style={styles.input} type="number" placeholder='Price 3' name='price3' required onChange={handler} />
       </div>
       <div style={styles.buttonContainer}>
-        <button style={styles.button} onClick={createAndDownloadPdf} onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>Download PDF</button>
+        <button style={styles.button} onClick={createAndDownloadPdf}>Download PDF</button>
       </div>
     </div>
   )
