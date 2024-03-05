@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { saveAs } from 'file-saver'
+import { BACKEND_URL } from './global'
 
 function App() {
 
@@ -21,8 +22,8 @@ function App() {
 
   async function createAndDownloadPdf(e) {
     //console.log(state)
-    await axios.post('http://localhost:3000/create-pdf', state)
-      .then(() => axios.get('http://localhost:3000/fetch-pdf', { responseType: 'blob' }))
+    await axios.post(`${BACKEND_URL}/create-pdf`, state)
+      .then(() => axios.get(`${BACKEND_URL}/fetch-pdf`, { responseType: 'blob' }))
       .then((res) => {
         const pdfBlob = new Blob([res.data], { type: 'application/pdf' })
         saveAs(pdfBlob, 'receipt.pdf')
